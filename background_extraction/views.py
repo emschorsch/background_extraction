@@ -38,6 +38,8 @@ def get_results(request):
     cap = cv2.VideoCapture('sample.mp4')
     _, f = cap.read()
     _, f = cap.read()
+    if frame is None:
+        assert(False)
     cv2.imwrite("f.jpg", f)
     data_uri = open('f.jpg', 'rb').read().encode('base64').replace('\n', '')
     img_tag = '<img src="data:image/png;base64,{0}">'.format(data_uri)
