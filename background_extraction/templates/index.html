@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block head_title %}GTO Analytics{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">	
+{% endblock %}
+
+
+{% block content %}
+
+<body>
+<div id="head"></div>
+<p class="logo">GTO Analytics</p>
+<div class="layout" id="maincontent">
+    <div class="CenterPanel">
+        <form class="auth_form" action="/" method="POST" id="form1" >
+            {% csrf_token %}
+            {% if loginFailed %}
+            <span class="warning">Your username or password was incorrect.<br><br></span>
+            {% endif %}
+            <span class="warning">opencv version is: {{ cv_version }}<br></span>
+            <table style="border-collapse: collapse" align="center">
+                <tr>
+                    <td>Username&nbsp;</td>
+                    <td colspan="2">
+                        <input type="text" name="username" id="username" class="inputtext" required="required" maxlength="20" pattern="[A-Za-z0-9_?\.]{1,20}" autofocus="autofocus" placeholder="Username" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Password&nbsp;</td>
+                    <td colspan="2">
+                        <input type="password" name="password" id="password" class="inputtext" required="required" maxlength="100" pattern=".{6,100}" placeholder="Password" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 11px"></td>
+                    <td>
+                        <input type="checkbox" id="keeplogged" name="keeplogged" value="1" />
+                        <label for="keeplogged">Remember me</label>
+                    </td>
+                    <td><input type="submit" name="login" value="Log in" class="submit" /></td>
+                </tr>
+            </table>
+        </form>
+        <div class="Description">
+            <p>This site is for GTO Analytics investors only</p>
+        </div>
+    </div>
+</div>
+
+<div id="foot">
+	<a href="mailto:info@gtoanalyticsllc.com" height="25px" style="color: #ffffff;">info@gtoanalyticsllc.com</a>
+</div>
+
+{% endblock %}
