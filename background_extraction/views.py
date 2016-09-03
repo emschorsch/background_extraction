@@ -25,7 +25,7 @@ def index(request):
             'cv_version': cv_version})
 
 def get_results(request):
-    for i in xrange(50000**2):
+    for i in xrange(5): #0000**2):
         i/1.5
     results = 10000**2
 
