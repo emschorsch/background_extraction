@@ -24,6 +24,13 @@ def index(request):
         return render(request, 'index.html', {'loginFailed': False,
             'cv_version': cv_version})
 
+def get_results(request):
+    for i in xrange(10000**2):
+        i/1.5
+    results = 10000**2
+
+    return render(request, 'results.html', {'count': results})
+
 def example_index(request):
     times = int(os.environ.get('TIMES',3))
     return HttpResponse('Hello! ' * times)
