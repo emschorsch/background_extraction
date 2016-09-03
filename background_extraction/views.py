@@ -35,7 +35,15 @@ def get_results(request):
         '-O', 'sample.mp4'], stdout=PIPE, stderr=PIPE)
     stdout, stderr = process.communicate()
 
-    return render(request, 'results.html', {'count': results})
+    cap = cv2.VideoCapture('sample.mp4')
+    _, f = cap.read()
+    _, f = cap.read()
+    cv2.imwrite("f.jpg", f)
+    data_uri = open('f.jpg', 'rb').read().encode('base64').replace('\n', '')
+    img_tag = '<img src="data:image/png;base64,{0}">'.format(data_uri)
+
+    return render(request, 'results.html', {'count': results,
+        'img_tag': img_tag})
 
 def example_index(request):
     times = int(os.environ.get('TIMES',3))
