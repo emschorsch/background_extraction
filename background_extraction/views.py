@@ -25,9 +25,15 @@ def index(request):
             'cv_version': cv_version})
 
 def get_results(request):
-    for i in xrange(10000**2):
+    for i in xrange(50000**2):
         i/1.5
     results = 10000**2
+
+    from subprocess import Popen, PIPE
+
+    process = Popen(['wget', 'https://www.dropbox.com/s/jhrt02l6ixgg08t/28-20160413T173810.894300Z.mp4?dl=0#', 
+        '-O', 'sample.mp4'], stdout=PIPE, stderr=PIPE)
+    stdout, stderr = process.communicate()
 
     return render(request, 'results.html', {'count': results})
 
