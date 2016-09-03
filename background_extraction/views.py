@@ -32,20 +32,20 @@ def get_results(request):
     from subprocess import Popen, PIPE
 
     process = Popen(['wget', 'https://www.dropbox.com/s/jhrt02l6ixgg08t/28-20160413T173810.894300Z.mp4?dl=0#', 
-        '-O', 'sample.mp4'], stdout=PIPE, stderr=PIPE)
+        '-O', '/tmp/sample.mp4'], stdout=PIPE, stderr=PIPE)
     stdout, stderr = process.communicate()
 
-    cap = cv2.VideoCapture('sample.mp4')
+    cap = cv2.VideoCapture('/tmp/sample.mp4')
     _, f = cap.read()
     _, f = cap.read()
-    if frame is None:
+    if f is None:
         assert(False)
-    cv2.imwrite("f.jpg", f)
-    data_uri = open('f.jpg', 'rb').read().encode('base64').replace('\n', '')
-    img_tag = '<img src="data:image/png;base64,{0}">'.format(data_uri)
+    cv2.imwrite("/tmp/f.jpg", f)
+    data_uri = open('/tmp/f.jpg', 'rb').read().encode('base64').replace('\n', '')
+    img_data = '{0}'.format(data_uri)
 
     return render(request, 'results.html', {'count': results,
-        'img_tag': img_tag})
+        'img_data': img_data})
 
 def example_index(request):
     times = int(os.environ.get('TIMES',3))
