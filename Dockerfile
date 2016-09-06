@@ -68,15 +68,6 @@ RUN apt-get update
 RUN apt-get install -y gfortran
 
 
-# Install scipy
-RUN pip install -v scipy
-
-
-# Install matplotlib
-# RUN apt-get install -y libfreetype6-dev
-# RUN apt-get install -y libpng-dev
-RUN pip install -v matplotlib
-
 # Install opencv with python bindings
 RUN apt-get update
 RUN apt-get install -y cmake
